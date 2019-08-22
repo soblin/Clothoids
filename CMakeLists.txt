@@ -75,7 +75,7 @@ IF( BUILD_EXECUTABLE )
 
   SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 
-  SET( EXECUTABLE testBiarc testDistance testG2 testG2plot testG2stat testG2stat2arc testG2statCLC testIntersect testPolyline testTriangle2D )
+  SET( EXECUTABLE testBiarc testDistance testG2 testG2plot testG2stat testG2stat2arc testG2statCLC testIntersect testPolyline testTriangle2D testPython )
   FOREACH ( EXE ${EXECUTABLE} )
     ADD_EXECUTABLE( ${EXE} tests-cpp/${EXE}.cc ${HEADERS} )
     TARGET_LINK_LIBRARIES( ${EXE} ${TARGET} )
@@ -104,3 +104,13 @@ IF(APPLE)
   MESSAGE( STATUS "CMAKE_OSX_DEPLOYMENT_TARGET = ${CMAKE_OSX_DEPLOYMENT_TARGET}" )
 ENDIF()
 MESSAGE( STATUS "BUILD_EXECUTABLE            = ${BUILD_EXECUTABLE}" )
+
+ADD_LIBRARY( PyClothoids SHARED ${SOURCES} ./src_python/python2.cc ${HEADERS} )
+SET_TARGET_PROPERTIES( PyClothoids PROPERTIES PREFIX "")
+TARGET_LINK_LIBRARIES( PyClothoids boost_python-py27)
+TARGET_INCLUDE_DIRECTORIES( PyClothoids PUBLIC /usr/include/python2.7)
+
+
+
+
+
