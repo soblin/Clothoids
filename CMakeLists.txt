@@ -105,12 +105,7 @@ IF(APPLE)
 ENDIF()
 MESSAGE( STATUS "BUILD_EXECUTABLE            = ${BUILD_EXECUTABLE}" )
 
-ADD_LIBRARY( PyClothoids SHARED ${SOURCES} ./src_python/python2.cc ${HEADERS} )
+ADD_LIBRARY( PyClothoids SHARED ${SOURCES} ./src_python/python3.cc ${HEADERS} )
 SET_TARGET_PROPERTIES( PyClothoids PROPERTIES PREFIX "")
-TARGET_LINK_LIBRARIES( PyClothoids boost_python-py27)
-TARGET_INCLUDE_DIRECTORIES( PyClothoids PUBLIC /usr/include/python2.7)
-
-
-
-
-
+TARGET_LINK_LIBRARIES( PyClothoids boost_python-py36)
+TARGET_INCLUDE_DIRECTORIES( PyClothoids PUBLIC /usr/include/python3.6m)
